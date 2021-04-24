@@ -16,11 +16,12 @@ public class Zones : MonoBehaviour
     
     public int GetLocation(Transform tr)
     {
-        if(bounds[0].transform.position[0]<tr.position[0]) return 0;
-        if(bounds[bounds.Count].transform.position[0]>tr.position[0]) return bounds.Count;
+        if(bounds[0].transform.position[0]>tr.position[0]) return 0;
+        if(bounds[bounds.Count-1].transform.position[0]<tr.position[0]) return bounds.Count;
         for(int i=0; i<bounds.Count;i++) {
-            if(bounds[i].transform.position[0]<tr.position[0] && bounds[i+1].transform.position[0]>tr.position[0]) return i;
+            if(bounds[i].transform.position[0]<tr.position[0] && bounds[i+1].transform.position[0]>tr.position[0]) return i+1;
         }
+        print("err Zone was not found");
         return -1;
     }
     

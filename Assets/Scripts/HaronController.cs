@@ -17,5 +17,6 @@ public class HaronController : MonoBehaviour
     void Update()
     {
         current_zone = ZB.GetLocation(transform);
+        
     }
 }
