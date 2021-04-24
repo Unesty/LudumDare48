@@ -5,7 +5,7 @@ using UnityEngine;
 public class CamMove : MonoBehaviour
 {
     public Transform follow;
-    Vector3 offset;
+    public Vector3 offset;
     void Start()
     {
         offset = transform.position-follow.position;
