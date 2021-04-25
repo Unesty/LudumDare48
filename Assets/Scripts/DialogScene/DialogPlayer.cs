@@ -16,6 +16,7 @@ public class DialogPlayer : MonoBehaviour
     private Coroutine _coroutine;
     Dictionary<string, Color32> _colors;
 
+    public event UnityAction DialogStarting;
     public event UnityAction DialogEnded;
 
     public void SetDialogs(Queue<Dialog> dialogs, Dictionary<string, Color32> colors)
@@ -26,6 +27,7 @@ public class DialogPlayer : MonoBehaviour
 
     public void StartDialog()
     {
+        DialogStarting?.Invoke();
         _dialogPanel.SetActive(true);
 
         _sentences = new Queue<string>();
