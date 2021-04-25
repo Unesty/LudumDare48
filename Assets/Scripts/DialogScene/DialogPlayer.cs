@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class DialogPlayer : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class DialogPlayer : MonoBehaviour
     private Queue<string> _sentences;
     private string _currentSentence;
     private Coroutine _coroutine;
+
+    public event UnityAction DialogEnded;
 
     public void SetDialogs(Queue<Dialog> dialogs)
     {
@@ -81,5 +84,6 @@ public class DialogPlayer : MonoBehaviour
     public void EndDialog()
     {
         _dialogPanel.SetActive(false);
+        DialogEnded?.Invoke();
     }
 }
