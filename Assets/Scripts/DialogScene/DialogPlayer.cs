@@ -14,12 +14,14 @@ public class DialogPlayer : MonoBehaviour
     private Queue<string> _sentences;
     private string _currentSentence;
     private Coroutine _coroutine;
+    Dictionary<string, Color32> _colors;
 
     public event UnityAction DialogEnded;
 
-    public void SetDialogs(Queue<Dialog> dialogs)
+    public void SetDialogs(Queue<Dialog> dialogs, Dictionary<string, Color32> colors)
     {
         _dialogs = dialogs;
+        _colors = colors;
     }
 
     public void StartDialog()
@@ -40,6 +42,8 @@ public class DialogPlayer : MonoBehaviour
         {
             Dialog dialog = _dialogs.Dequeue();
             _name.text = dialog.Name;
+            _name.color = _text.color = _colors[dialog.Name];
+
             _sentences.Clear();
 
             foreach (string sentence in dialog.Sentencens)
