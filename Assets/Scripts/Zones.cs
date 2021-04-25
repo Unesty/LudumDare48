@@ -4,30 +4,33 @@ using UnityEngine;
 
 public class Zones : MonoBehaviour
 {
-    [SerializeField]
-    public List<GameObject> bounds;
-    
-    [System.Serializable]
-    public class le_class
+    [SerializeField] private List<GameObject> _bounds;
+    [SerializeField] private List<LocationEnemyList> _locationsEnemyes;
+
+    private void OnEnable()
     {
-        public List<GameObject> enemys;
+        _locationsEnemyes = new List<LocationEnemyList>();
     }
-    public List<le_class> location = new List<le_class>();
-    
-    public int GetLocation(Transform tr)
+
+    public int GetLocation(Transform transform)
     {
-        if(bounds[0].transform.position[0]>tr.position[0]) return 0;
-        if(bounds[bounds.Count-1].transform.position[0]<tr.position[0]) return bounds.Count;
-        for(int i=0; i<bounds.Count;i++) {
-            if(bounds[i].transform.position[0]<tr.position[0] && bounds[i+1].transform.position[0]>tr.position[0]) return i+1;
-        }
-        print("err Zone was not found");
+        if (_bounds[0].transform.position.x > transform.position.x)
+            return 0;
+
+        if (_bounds[_bounds.Count - 1].transform.position.x < transform.position.x)
+            return _bounds.Count;
+
+        for (int i = 0; i < _bounds.Count; i++)
+            if (_bounds[i].transform.position.x < transform.position.x && _bounds[i + 1].transform.position.x > transform.position.x)
+                return i + 1;
+
+        Debug.Log("err Zone was not found");
         return -1;
     }
-    
-    public List<GameObject> GetLocationEnemys(Transform tr)
+
+    public List<GameObject> GetLocationEnemys(Transform transform)
     {
-        int l = GetLocation(tr);
-        return location[l].enemys;
+        int locationIndex = GetLocation(transform);
+        return _locationsEnemyes[locationIndex].Enemys;
     }
 }

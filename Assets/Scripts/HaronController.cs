@@ -4,19 +4,11 @@ using UnityEngine;
 
 public class HaronController : MonoBehaviour
 {
-    public Zones ZB;
-    public int current_zone;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private Zones _zones;
+    [SerializeField] private int _currentZone;
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        current_zone = ZB.GetLocation(transform);
-        
+        _currentZone = _zones.GetLocation(transform);
     }
 }

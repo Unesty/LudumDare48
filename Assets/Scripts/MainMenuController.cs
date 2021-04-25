@@ -4,13 +4,23 @@ using UnityEngine;
 
 public class MainMenuController : MonoBehaviour
 {
-    Rect hw_size = new Rect(0,0,100,100);
-    public bool pr=false;
-    public void hw() {
-        pr=true ^ pr;
-    }
-    void OnGUI()
+    [SerializeField] private bool _flag;
+
+    private Rect _lablePosition;
+
+    private void OnEnable()
     {
-        if(pr) GUI.Label(hw_size ,"Hello World!");
+        _lablePosition = new Rect(0, 0, 100, 100);
+    }
+
+    public void SayHelloWorld() 
+    {
+        _flag=true ^ _flag;
+    }
+
+    private void OnGUI()
+    {
+        if(_flag) 
+            GUI.Label(_lablePosition ,"Hello World!");
     }
 }

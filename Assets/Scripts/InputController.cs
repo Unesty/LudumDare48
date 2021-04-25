@@ -4,17 +4,15 @@ using UnityEngine;
 
 public class InputController : MonoBehaviour
 {
-    public float speed;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private float _speed;
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        transform.Translate(Input.GetAxis("Horizontal")*Time.deltaTime*speed, 0, Input.GetAxis("Vertical")*Time.deltaTime*speed);
-        
+        float xDirection = Input.GetAxis("Horizontal");
+        float yDirection = Input.GetAxis("Vertical");
+
+        Vector3 direction = new Vector3(xDirection, 0, yDirection);
+
+        transform.Translate(direction * Time.deltaTime * _speed);
     }
 }

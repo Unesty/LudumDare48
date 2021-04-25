@@ -4,30 +4,20 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    List<GameObject> enemys;
-    [SerializeField]
-    uint state;
-    [SerializeField]
-    float time;
-    [SerializeField]
-    float timer;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private uint _state;
+    [SerializeField] private float _time;
+    [SerializeField] private float _timer;
 
-    // Update is called once per frame
-    void Update()
+    private List<GameObject> _enemys;
+
+    private void Update()
     {
-        switch(state) {
-            case 0: {
+        switch (_state)
+        {
+            case 0:
                 break;
-            }
-            case 1: {
+            case 1:
                 break;
-            }
         }
     }
 }
